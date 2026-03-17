@@ -6,5 +6,8 @@ dist/
 wheels/
 *.egg-info
 
+# Ignore Graph Files
+*.graphml
+
 # Virtual environments
 .venv
