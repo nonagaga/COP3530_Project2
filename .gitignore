@@ -9,5 +9,8 @@ wheels/
 # Ignore Graph Files
 *.graphml
 
+# Ignore whatever the cache file is
+cache/
+
 # Virtual environments
 .venv
