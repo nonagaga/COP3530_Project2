@@ -99,7 +99,7 @@ def main():
     #graph = nx.Graph(ox.project_graph(nx.MultiDiGraph(graph)))
     print(f"Nodes: {graph.number_of_nodes()}, Edges {graph.number_of_edges()}")
 
-    route = dijkstra(graph, 0, len(graph)-1)
+    route = dijkstra(graph, 6000, 150)
 
     ox.plot.plot_graph_route(nx.MultiDiGraph(graph), route)
 
