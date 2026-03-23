@@ -70,7 +70,7 @@ def astar(graph: nx.Graph, source: int, target: int):
         for _, v, data in graph.edges(u, data=True):
             weight = data['length']
             #this is the A* additon, the heuristic
-            h = math.sqrt((graph.nodes[v]['y']-target_lat)**2 + (graph.nodes[v]['x']-target_lon)**2)
+            h = ox.distance.great_circle(target_lat, target_lon, graph.nodes[v]['y'], graph.nodes[v]['x'])
             if dist[v] > dist[u] + weight + h:
                 dist[v] = dist[u] + weight + h
                 heapq.heappush(Q, (dist[v], v))
@@ -110,7 +110,7 @@ def main():
     # graph = nx.Graph(ox.project_graph(nx.MultiDiGraph(graph)))
     print(f"Nodes: {graph.number_of_nodes()}, Edges {graph.number_of_edges()}")
 
-    route = astar(graph, 0, len(graph) - 1)
+    route = astar(graph, 6000, 150)
 
     ox.plot.plot_graph_route(nx.MultiDiGraph(graph), route)
 
