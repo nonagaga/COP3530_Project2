@@ -72,8 +72,8 @@ def astar(graph: nx.Graph, source: int, target: int):
             #this is the A* additon, the heuristic
             h = ox.distance.great_circle(target_lat, target_lon, graph.nodes[v]['y'], graph.nodes[v]['x'])
             if dist[v] > dist[u] + weight + h:
-                dist[v] = dist[u] + weight + h
-                heapq.heappush(Q, (dist[v], v))
+                dist[v] = dist[u] + weight
+                heapq.heappush(Q, (dist[v] + h, v))
                 # store the predecessor node that results in shortest path to source
                 prev[v] = u
 
