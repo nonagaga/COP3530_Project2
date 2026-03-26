@@ -42,7 +42,7 @@ def astar(graph: nx.Graph, source: int, target: int):
 
                 # if we've found the node we're looking for...
                 if (v == target):
-                    # stop the search by clearning the queue
+                    # stop the search by clearing the queue
                     Q.clear()
                     # exit loop through neighbors
                     print("iterations: ", iter)
