@@ -45,7 +45,6 @@ def astar(graph: nx.Graph, source: int, target: int):
                     # stop the search by clearning the queue
                     Q.clear()
                     # exit loop through neighbors
-                    print("iterations: ", iter)
                     break
 
     # backtracked shortest path
@@ -64,7 +63,7 @@ def astar(graph: nx.Graph, source: int, target: int):
     while (backtrack):
         route.append(backtrack.pop())
 
-    return route
+    return route, dist[target], iter
 
 
 def main():
