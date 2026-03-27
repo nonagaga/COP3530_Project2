@@ -1,4 +1,4 @@
-
+import gc
 import osmnx as ox
 import pickle
 import networkx as nx
@@ -9,7 +9,10 @@ def get_city_graph(city_string) -> nx.MultiDiGraph:
         print("Looking for cached graph...")
         with open(f'{city_string}.pkl', 'rb') as f:
             print("Found cached graph!")
+            # disable garbage collector for pickle load speed
+            gc.disable()
             graph = pickle.load(f)
+            gc.enable()
     except:
         print("No cached graph found, downloading (this might take a while)...")
         graph = ox.graph.graph_from_place(city_string)

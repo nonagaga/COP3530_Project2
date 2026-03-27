@@ -1,5 +1,4 @@
 import networkx as nx
-
 from dijkstra import *
 import random
 import time
@@ -55,17 +54,34 @@ def main():
     a_start = time.perf_counter()
     a_route, a_dist, a_iter = astar(graph, source, target)
     a_end = time.perf_counter()
-    fig, axes = plt.subplots(1, 2, figsize=(20, 10))
-    axes[0].set_title("Dijkstra")
-    axes[1].set_title("A*")
-    ox.plot.plot_graph_route(graph, d_route, ax=axes[0], figsize=(10, 10), show = False, close = False, bgcolor='#111111', node_color='w', node_size=15, node_alpha=None, node_edgecolor='none', node_zorder=1, edge_color='#999999', edge_linewidth=20, edge_alpha=None, bbox=None, save=False, filepath=None, dpi=300)
-    print(f'Dijkstra route distance: {d_dist}\n')
-    print(f'Dijkstra route finding time: {d_end-d_start}\n')
+    
+
+    print(f'\nDijkstra route distance: {d_dist:,.6f} meters')
+    print(f'Dijkstra route finding time: {(d_end-d_start):,.6f} seconds')
     print(f'Dijkstra search iterations: {d_iter}\n')
-    ox.plot.plot_graph_route(graph, a_route, ax=axes[1], figsize=(10, 10), show = False, close = False, bgcolor='#111111', node_color='w', node_size=15, node_alpha=None, node_edgecolor='none', node_zorder=1, edge_color='#999999', edge_linewidth=20, edge_alpha=None, bbox=None, save=False, filepath=None, dpi=300)
-    print(f'Astar route distance: {a_dist}\n')
-    print(f'Astar route finding time: {a_end-a_start}\n')
+
+    print(f'Astar route distance: {a_dist:,.6f} meters')
+    print(f'Astar route finding time: {(a_end-a_start):,.6f} seconds')
     print(f'Astar search iterations: {a_iter}\n')
+
+    print("Plotting routes (this also might take a while)...")
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))
+
+    # set black background
+    ax1.set_facecolor('black')
+    ax2.set_facecolor('black')
+
+    # set titles
+    ax1.set_title("Dijkstra")
+    ax2.set_title("A*")
+
+    ox.plot.plot_graph(graph, ax=ax1, show=False, close=False, node_color="white", edge_color="white", edge_alpha=0.1)
+    ox.plot.plot_graph(graph, ax=ax2, show=False, close=False, node_color="white", edge_color="white", edge_alpha=0.1)
+
+    ox.plot.plot_graph_route(graph, d_route, ax=ax1, show=False, close=False)
+    ox.plot.plot_graph_route(graph, a_route, ax=ax2, show=False, close=False)
+
     plt.show()
 
 if __name__ == "__main__":
