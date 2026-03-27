@@ -9,6 +9,10 @@ wheels/
 # Ignore Graph Files
 *.graphml
 
+# Ignore Pkl files
+*.pkl
+
+
 # Ignore whatever the cache file is
 cache/
 

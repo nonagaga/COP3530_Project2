@@ -2,6 +2,7 @@
 import osmnx as ox
 import pickle
 import networkx as nx
+
 def get_city_graph(city_string) -> nx.MultiDiGraph:
     graph = nx.MultiDiGraph()
     try:
@@ -12,11 +13,11 @@ def get_city_graph(city_string) -> nx.MultiDiGraph:
     except:
         print("No cached graph found, downloading (this might take a while)...")
         graph = ox.graph.graph_from_place(city_string)
-        print("Converting graph to simple format...")
-        simple_graph = convert_to_simple_graph(graph)
+        #print("Converting graph to simple format...")
+        #graph = convert_to_simple_graph(graph)
         print("Saving graph to cache...")
         with open(f'{city_string}.pkl', 'wb') as f:
-            pickle.dump(simple_graph, f)
+            pickle.dump(graph, f)
     return graph
 
 # a helper function I wrote to speed up graph saving

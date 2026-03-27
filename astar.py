@@ -34,8 +34,9 @@ def astar(graph: nx.Graph, source: int, target: int):
             weight = data['length']
             #this is the A* additon, the heuristic
             h = ox.distance.great_circle(target_lat, target_lon, graph.nodes[v]['y'], graph.nodes[v]['x'])
-            if dist[v] > dist[u] + weight + h:
+            if dist[v] > dist[u] + weight:
                 dist[v] = dist[u] + weight
+                # heuristic only affects the ordering in the priority queue
                 heapq.heappush(Q, (dist[v] + h, v))
                 # store the predecessor node that results in shortest path to source
                 prev[v] = u
@@ -69,10 +70,9 @@ def astar(graph: nx.Graph, source: int, target: int):
 def main():
     graph = get_city_graph("Jacksonville, Florida")
     graph = nx.convert_node_labels_to_integers(graph, first_label=0, label_attribute='original_label')
-    # graph = nx.Graph(ox.project_graph(nx.MultiDiGraph(graph)))
     print(f"Nodes: {graph.number_of_nodes()}, Edges {graph.number_of_edges()}")
 
-    route = astar(graph, 6000, 150)
+    route, dist, iter = astar(graph, 6000, 150)
 
     ox.plot.plot_graph_route(nx.MultiDiGraph(graph), route)
 
