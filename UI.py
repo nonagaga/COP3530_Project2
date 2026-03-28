@@ -1,4 +1,6 @@
 import networkx as nx
+from networkx.classes import MultiDiGraph
+
 from dijkstra import *
 import random
 import time
@@ -76,11 +78,11 @@ def main():
     ax1.set_title("Dijkstra")
     ax2.set_title("A*")
 
-    ox.plot.plot_graph(graph, ax=ax1, show=False, close=False, node_color="white", edge_color="white", edge_alpha=0.1)
-    ox.plot.plot_graph(graph, ax=ax2, show=False, close=False, node_color="white", edge_color="white", edge_alpha=0.1)
+    ox.plot.plot_graph(MultiDiGraph(graph), ax=ax1, show=False, close=False, node_color="white", edge_color="white", edge_alpha=0.1)
+    ox.plot.plot_graph(MultiDiGraph(graph), ax=ax2, show=False, close=False, node_color="white", edge_color="white", edge_alpha=0.1)
 
-    ox.plot.plot_graph_route(graph, d_route, ax=ax1, show=False, close=False)
-    ox.plot.plot_graph_route(graph, a_route, ax=ax2, show=False, close=False)
+    ox.plot.plot_graph_route(MultiDiGraph(graph), d_route, ax=ax1, show=False, close=False)
+    ox.plot.plot_graph_route(MultiDiGraph(graph), a_route, ax=ax2, show=False, close=False)
 
     plt.show()
 
