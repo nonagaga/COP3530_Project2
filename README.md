@@ -47,4 +47,4 @@ Astar search iterations: 2236
 Plotting routes (this also might take a while)...
 ```
 
-![Graph Comparison in Gainesville, Florida](images/Dijkstra%20vs%20Astar%20Gainesville.png)
+![Graph Comparison in Gainesville, Florida](images/readme_example.png)
